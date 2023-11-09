@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import model.service.DepartmentService;
 
 public class MainViewController implements Initializable{
 
@@ -58,6 +59,10 @@ public class MainViewController implements Initializable{
 			
 			mainVBox.getChildren().add(mainMenu);
 			mainVBox.getChildren().addAll(newVbox.getChildren());
+			
+			DepartmentListController controller = loader.getController();
+			controller.setDepartmentService(new DepartmentService());
+			controller.uptadeTableView();
 		}catch(IOException e) {
 			Alerts.showAlert("Error", "Error Loading view", e.getMessage(), AlertType.ERROR);
 		}
